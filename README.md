@@ -74,3 +74,7 @@ JavaScript for dynamic content and API interaction
 It also showcases the use of asynchronous programming with async/await, and working with a real-world third-party RESTful API (OpenWeatherMap). Despite being simple in design, it effectively integrates all the essential building blocks of a dynamic web application, making it a strong base for adding more advanced features like forecast data, unit toggles, and geolocation.
 
 This type of project is especially useful for internships or portfolio-building as it proves familiarity with external APIs, DOM manipulation, and clean UI design practices.
+
+
+#OUTPUT     
+![Image](https://github.com/user-attachments/assets/9f11ead5-485c-43b3-b6f3-a8e4c0cbefed)
