@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    input {
+      padding: 0.5rem;
+      width: 70%;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      background: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #weather-result {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Weather App</h1>
+    <input type="text" id="city" placeholder="Enter city name" />
+    <button onclick="getWeather()">Get Weather</button>
+    <div id="weather-result"></div>
+  </div>
+
+  <script>
+    const apiKey = "fe614f473704ba32d3a0c5e64f73a042"; // Your real API key
+
+    async function getWeather() {
+      const city = document.getElementById("city").value;
+      const resultDiv = document.getElementById("weather-result");
+
+      if (!city) {
+        resultDiv.innerHTML = "Please enter a city name.";
+        return;
+      }
+
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("City not found");
+
+        const data = await response.json();
+        const weather = `
+          <strong>${data.name}</strong><br/>
+          Temperature: ${data.main.temp} °C<br/>
+          Weather: ${data.weather[0].description}<br/>
+          Wind: ${data.wind.speed} m/s
+        `;
+        resultDiv.innerHTML = weather;
+      } catch (error) {
+        resultDiv.innerHTML = "Error: " + error.message;
+      }
+    }
+  </script>
+</body>
+</html>
